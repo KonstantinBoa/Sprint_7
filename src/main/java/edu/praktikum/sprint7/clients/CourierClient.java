@@ -2,6 +2,8 @@ package edu.praktikum.sprint7.clients;
 
 import edu.praktikum.sprint7.models.Courier;
 import edu.praktikum.sprint7.models.CourierCreds;
+
+import io.qameta.allure.Step;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 
@@ -16,6 +18,7 @@ public class CourierClient {
         RestAssured.baseURI = "https://qa-scooter.praktikum-services.ru";
     }
 
+    @Step("Создание курьера: {courier}")
     public Response create(Courier courier) {
         return given()
                 .header("Content-type", "application/json")
@@ -25,6 +28,7 @@ public class CourierClient {
                 .post(API_V1_COURIER);
     }
 
+    @Step("Логин курьера: {creds}")
     public Response login(CourierCreds creds) {
         return given()
                 .header("Content-type", "application/json")
@@ -34,6 +38,7 @@ public class CourierClient {
                 .post(API_V1_COURIER_LOGIN);
     }
 
+    @Step("Удаление курьера по ID: {id}")
     public Response delete(int id) {
         return given()
                 .header("Content-type", "application/json")
