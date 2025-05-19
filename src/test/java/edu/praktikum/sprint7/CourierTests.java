@@ -32,7 +32,7 @@ public class CourierTests {
     }
 
     @Test
-    public void createDuplicateCourier_shouldReturn409() {
+    public void createDuplicateCourierShouldReturn409() {
         Courier courier = randomCourier();
 
         Response firstResponse = courierClient.create(courier);
@@ -47,7 +47,7 @@ public class CourierTests {
     }
 
     @Test
-    public void createCourierWithoutLogin_shouldReturn400() {
+    public void createCourierWithoutLoginShouldReturn400() {
         Courier courier = new Courier()
                 .setPassword("somePassword")
                 .setFirstName("NoLogin");
@@ -59,7 +59,7 @@ public class CourierTests {
     }
 
     @Test
-    public void createCourierWithoutPassword_shouldReturn400() {
+    public void createCourierWithoutPasswordShouldReturn400() {
         Courier courier = new Courier()
                 .setLogin("noPassword_" + System.currentTimeMillis())
                 .setFirstName("NoPassword");
@@ -71,7 +71,7 @@ public class CourierTests {
     }
 
     @Test
-    public void loginWithIncorrectCredentials_shouldReturn404() {
+    public void loginWithIncorrectCredentialsShouldReturn404() {
         CourierCreds creds = new CourierCreds("invalidLogin", "invalidPassword");
 
         Response response = courierClient.login(creds);
@@ -81,7 +81,7 @@ public class CourierTests {
     }
 
     @Test
-    public void loginWithoutLogin_shouldReturn400() {
+    public void loginWithoutLoginShouldReturn400() {
         CourierCreds creds = new CourierCreds(null, "somePassword");
 
         Response response = courierClient.login(creds);
@@ -91,7 +91,7 @@ public class CourierTests {
     }
 
     @Test
-    public void loginWithoutPassword_shouldReturn400() {
+    public void loginWithoutPasswordShouldReturn400() {
         CourierCreds creds = new CourierCreds("someLogin", null);
 
         Response response = courierClient.login(creds);
